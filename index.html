@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>深空儲蓄計畫 - 獵人專屬理財終端</title>
+    <title>愛在增值時 - interest-ing love</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"></script>
     <style>
@@ -250,9 +250,9 @@
             <!-- Logo -->
             <div class="text-center">
                 <h1 class="text-3xl md:text-4xl font-black tracking-[0.4em] uppercase italic bg-clip-text text-transparent bg-gradient-to-b from-white to-slate-500">
-                    深空儲蓄計劃
+                    愛在增值時
                 </h1>
-                <p class="text-slate-400 font-light tracking-[0.5em] text-xs uppercase mt-2">Evol Financial Terminal v3.5</p>
+                <p class="text-slate-400 font-light tracking-[0.5em] text-xs uppercase mt-2">interest-ing love</p>
             </div>
             <!-- 生日 -->
             <div>
@@ -452,10 +452,10 @@
             </button>
             <div class="text-center">
                 <h1 class="text-4xl md:text-6xl font-black tracking-[0.4em] uppercase italic bg-clip-text text-transparent bg-gradient-to-b from-white to-slate-500">
-                    深空儲蓄計畫
+                    愛在增值時
                 </h1>
                 <div class="flex justify-center gap-4 items-center mt-4">
-                    <p class="text-slate-400 font-light tracking-[0.5em] text-xs uppercase">Evol Financial Terminal v3.5</p>
+                    <p class="text-slate-400 font-light tracking-[0.5em] text-xs uppercase">interest-ing love</p>
                     <button onclick="openShare()" class="bg-accent-color/20 text-accent-color border border-accent-color/50 px-3 py-1 rounded-full text-[10px] font-bold hover:bg-accent-color hover:text-white transition">分享計畫</button>
                 </div>
             </div>
@@ -469,8 +469,8 @@
                         <span id="char-icon" class="text-accent-color">⭐</span> 夢想設定
                     </h2>
                     <div class="flex bg-white/5 rounded-full p-1 border border-white/10">
-                        <button onclick="switchConfigTab('savings')" id="config-tab-savings" class="config-sub-tab active px-4 py-1.5 rounded-full text-[10px] uppercase font-bold">儲蓄計畫</button>
-                        <button onclick="switchConfigTab('investment')" id="config-tab-investment" class="config-sub-tab px-4 py-1.5 rounded-full text-[10px] uppercase font-bold">投資計畫</button>
+                        <button onclick="switchConfigTab('savings')" id="config-tab-savings" class="config-sub-tab active px-6 py-2.5 rounded-full text-sm uppercase font-bold">儲蓄計畫</button>
+                        <button onclick="switchConfigTab('investment')" id="config-tab-investment" class="config-sub-tab px-6 py-2.5 rounded-full text-sm uppercase font-bold">投資計畫</button>
                     </div>
                 </div>
                 
@@ -585,7 +585,8 @@
                                     </div>
                                     <div class="w-12 h-12 rounded-2xl bg-accent-color/20 flex items-center justify-center text-accent-color text-xl">💰</div>
                                 </div>
-                                <div id="feedback-dialogue" class="dialogue-box">
+                                <div id="feedback-dialogue" class="dialogue-box flex items-start gap-4">
+                                    <img id="dialogue-avatar" src="" alt="" class="w-12 h-12 rounded-2xl object-cover object-top shrink-0 hidden">
                                     <p id="dialogue-text" class="text-sm leading-relaxed text-slate-200 italic">"規劃未來中...請先完成設定。"</p>
                                 </div>
                             </div>
@@ -696,10 +697,12 @@
             FemD:    { name: "護士",  accent: "#c4b5fd", bodyClass: "bg-femd",    icon: "🌙", scenType: 'snow',    reward: { id: 'femd_moon',   icon: "🌕", title: "滿月水晶",   quote: "真的做到了耶…你好棒💗<br>之後也想這樣一直陪你" }, dialogues: { init: "慢慢來就好，好嗎？🥺<br>我會在旁邊陪你一起存錢的～", met: "欸真的有增加耶…好厲害🎀🧸<br>你這樣努力，我都有看到喔", unmet: "是不是最近太累了…？🥲<br>沒關係啦，我陪你一起慢慢調整就好" } }
         };
 
+        const avatarMap = { Xavier: '1.jpg', Zayne: '2.jpg', Rafayel: '3.jpg', Sylus: '4.jpg', FemA: '5.jpg', FemB: '6.jpg', FemC: '7.jpg', FemD: '8.jpg' };
+
         const products = {
-            low: [ { name: "玉山定期儲蓄存款", rate: 0.016, desc: "極致穩定，保本首選" }, { name: "玉山全球政府債券基金", rate: 0.035, desc: "波動極低，月月領息" } ],
-            mid: [ { name: "玉山精選平衡組合基金", rate: 0.065, desc: "股債搭配，抗波動首選" }, { name: "深空星系穩健型 ETF", rate: 0.075, desc: "追隨大盤，穩步增長" } ],
-            high: [ { name: "玉山數位轉型優勢基金", rate: 0.12, desc: "積極佈局，追求超額報酬" }, { name: "臨空科技成長股票基金", rate: 0.15, desc: "高成長潛力，獵人限定" } ]
+            low: [ { name: "定期儲蓄存款", rate: 0.016, desc: "極致穩定，保本首選" }, { name: "全球政府債券基金", rate: 0.035, desc: "波動極低，月月領息" } ],
+            mid: [ { name: "精選平衡組合基金", rate: 0.065, desc: "股債搭配，抗波動首選" }, { name: "深空星系穩健型 ETF", rate: 0.075, desc: "追隨大盤，穩步增長" } ],
+            high: [ { name: "數位轉型優勢基金", rate: 0.12, desc: "積極佈局，追求超額報酬" }, { name: "臨空科技成長股票基金", rate: 0.15, desc: "高成長潛力，獵人限定" } ]
         };
 
         let currentCharacter = 'Xavier';
@@ -995,6 +998,9 @@
             planInitialized = true;
             document.getElementById('display-dream-target').innerText = plan.dream;
             document.getElementById('monthly-kpi').innerText = `$ ${plan.kpi.toLocaleString()}`;
+            const initAvatar = document.getElementById('dialogue-avatar');
+            initAvatar.src = avatarMap[currentCharacter];
+            initAvatar.classList.remove('hidden');
             document.getElementById('dialogue-text').innerHTML = `<span class="font-black text-accent-color uppercase">${config[currentCharacter].name}：</span><br/>"${config[currentCharacter].dialogues.init}"`;
             updateLedger();
             document.getElementById('latest-empty').classList.add('hidden');
@@ -1014,7 +1020,15 @@
             const amountInput = document.getElementById('record-amount');
             const amount = parseFloat(amountInput.value.replace(/,/g, ''));
             if (!amount || isNaN(amount)) return;
-            plan.records.push(amount);
+            const now = new Date();
+            const key = `${now.getFullYear()}-${String(now.getMonth() + 1).padStart(2, '0')}`;
+            const label = `${now.getMonth() + 1}月`;
+            const existing = plan.records.find(r => r.key === key);
+            if (existing) {
+                existing.amount += amount;
+            } else {
+                plan.records.push({ key, label, amount });
+            }
             amountInput.value = '';
             updateLedger();
             showDialogue(amount >= plan.kpi);
@@ -1024,6 +1038,9 @@
 
         function showDialogue(met) {
             const char = config[currentCharacter];
+            const avatar = document.getElementById('dialogue-avatar');
+            avatar.src = avatarMap[currentCharacter];
+            avatar.classList.remove('hidden');
             document.getElementById('dialogue-text').innerHTML =
                 `<span class="font-black text-accent-color uppercase">${char.name}：</span><br/>` + (met ? char.dialogues.met : char.dialogues.unmet);
         }
@@ -1034,12 +1051,14 @@
             let totalSaved = plan.current;
             const displayLen = Math.max(plan.months, plan.records.length);
             for (let i = 0; i < displayLen; i++) {
-                const rec = plan.records[i] || 0;
-                totalSaved += rec;
+                const rec = plan.records[i];
+                const amount = rec ? rec.amount : 0;
+                const label = rec ? rec.label : `M ${i + 1}`;
+                totalSaved += amount;
                 const gap = Math.max(0, plan.target - totalSaved);
                 const row = document.createElement('tr');
                 row.className = 'ledger-row border-b border-white/5';
-                row.innerHTML = `<td class="p-4 font-bold text-slate-300">M ${i+1}</td><td class="p-4 font-black text-white">$ ${rec.toLocaleString()}</td><td class="p-4 text-right font-black text-accent-color opacity-80">$ ${Math.round(gap).toLocaleString()}</td>`;
+                row.innerHTML = `<td class="p-4 font-bold text-slate-300">${label}</td><td class="p-4 font-black text-white">$ ${amount.toLocaleString()}</td><td class="p-4 text-right font-black text-accent-color opacity-80">$ ${Math.round(gap).toLocaleString()}</td>`;
                 body.appendChild(row);
             }
             const percent = Math.min(100, Math.round((totalSaved / plan.target) * 100));
@@ -1049,7 +1068,7 @@
         function checkReward() {
             if (plan.completed) return;
             let totalSaved = plan.current;
-            plan.records.forEach(r => { totalSaved += r; });
+            plan.records.forEach(r => { totalSaved += r.amount; });
             if (totalSaved >= plan.target && plan.target > 0) {
                 plan.completed = true;
                 const char = config[plan.character];
@@ -1080,7 +1099,7 @@
             list.classList.remove('hidden');
             list.innerHTML = activePlans.map(p => {
                 let totalSaved = p.current;
-                p.records.forEach(r => { totalSaved += r; });
+                p.records.forEach(r => { totalSaved += r.amount; });
                 const percent = Math.min(100, Math.round((totalSaved / p.target) * 100));
                 const charCfg = config[p.character];
                 return `
@@ -1332,8 +1351,11 @@
             Xavier:  'vd1.mp4',
             Zayne:   'vd2.mp4',
             Rafayel: 'vd3.mp4',
-            Sylus:   'vd4.mp4'
-            // vd5~vd8 待補
+            Sylus:   'vd4.mp4',
+            FemA:    'vd5.mp4',
+            FemB:    'vd6.mp4',
+            FemC:    'vd7.mp4',
+            FemD:    'vd8.mp4'
         };
 
         function acceptDateInvite() {
